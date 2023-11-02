@@ -9,6 +9,7 @@ export default function Navbar() {
     const [user, setUser] = useState();
     useEffect(() => {
         onUserStateChange((user) => {
+            console.log("onUserState User >>" , user)
             setUser(user);
         })
     } , [])

@@ -19,6 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
 const database = getDatabase();
 
 export async function login() {
@@ -34,7 +37,7 @@ export async function logout() {
 export function onUserStateChange(callback) {
   onAuthStateChanged(auth, async (user) => {
     // 1. 사용자가 있는 경우에(로그인한 경우에)
-    const updatedUser = user ? adminUser(user) : null;
+    const updatedUser = user ? await adminUser(user) : null;
     callback(updatedUser);
   });
 }

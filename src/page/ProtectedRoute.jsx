@@ -9,7 +9,7 @@ export default function ProtectedRoute({children, requireAdmin}) {
     const {user} = useAuthContext();
 
     if(!user || (requireAdmin && !user.isAdmin)){
-        return <Navigate to="/" replcae></Navigate>
+        return <Navigate to="/" replcae={true}></Navigate>
     }
     return children;
 

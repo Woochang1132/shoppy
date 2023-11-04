@@ -3,6 +3,7 @@ import Button from '../component/ui/Button';
 import { uploadImage } from '../api/uploader';
 
 
+
 export default function NewProduct() {
     const [product, setProduct] = useState({});
     const [file, setFile] = useState();
@@ -11,6 +12,7 @@ export default function NewProduct() {
         const {name, value, files} = e.target;
         if(name === 'file'){
             setFile(files && files[0]);
+         
             return;
         }
         setProduct((product) => ({
@@ -19,8 +21,12 @@ export default function NewProduct() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-const image  = uploadImage(file)
-console.log(image)
+        uploadImage(file).then((result) => {
+            console.log(result)
+        })
+
+
+
         // 제품의 사진을 Cloudinary에 업로드 하고 URL을 획득
         // Firebase에 새로운 제품을 추가함
     };

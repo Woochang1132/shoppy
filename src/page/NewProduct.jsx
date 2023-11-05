@@ -21,8 +21,8 @@ export default function NewProduct() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        uploadImage(file).then((result) => {
-            console.log(result)
+        uploadImage(file).then((url) => {
+            console.log(url)
         })
 
 

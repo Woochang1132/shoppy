@@ -57,3 +57,5 @@ async function adminUser(user) {
       return user;
     });
 }
+
+export async function addNewProduct(product, imageUrl) {}

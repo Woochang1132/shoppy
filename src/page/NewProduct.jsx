@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../component/ui/Button';
 import { uploadImage } from '../api/uploader';
+import { addNewProduct } from '../api/firebase';
 
 
 
@@ -23,6 +24,7 @@ export default function NewProduct() {
         e.preventDefault();
         uploadImage(file).then((url) => {
             console.log(url)
+            addNewProduct(product,url)
         })
 
 

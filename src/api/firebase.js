@@ -58,6 +58,16 @@ async function adminUser(user) {
       return user;
     });
 }
+// firebase에 있는 제품정보를 가져온다.
+export async function getProducts() {
+  return get(ref(database, "products")) //
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      }
+      return [];
+    });
+}
 
 export async function addNewProduct(product, imageUrl) {
   const id = uuid();

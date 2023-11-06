@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {AiOutlineShopping} from 'react-icons/ai'
 import {BsFillPencilFill} from 'react-icons/bs'
 import { Link } from 'react-router-dom';
-import { login, logout, onUserStateChange } from '../api/firebase';
 import User from './User';
 import Button from './ui/Button';
 import { useAuthContext } from './AuthContext';

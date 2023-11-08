@@ -14,7 +14,7 @@ export default function ProductDetail() {
     const [selected, setSelected] = useState(options && options[0]);
     const handleSelect = (e) => setSelected(e.target.value);
     const handleClick = (e) => {
-        const product = {id, image, price, option : selected, quantity : 1}
+        const product = {id, image, title, price, option : selected, quantity : 1}
         addOrUpdateToCart(uid, product);
     } 
     return (

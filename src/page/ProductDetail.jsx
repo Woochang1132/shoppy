@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Button from '../component/ui/Button';
 import { useAuthContext } from '../component/AuthContext';
 import { addOrUpdateToCart } from '../api/firebase';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export default function ProductDetail() {
     const { uid } = useAuthContext();
@@ -12,10 +13,24 @@ export default function ProductDetail() {
         }
         } = useLocation();
     const [selected, setSelected] = useState(options && options[0]);
+    const queryClient = useQueryClient();
+    const addCart = useMutation({
+        mutationFn : ({uid, product}) => addOrUpdateToCart(uid, product),
+        onSuccess : () => {
+            queryClient.invalidateQueries(['carts'])
+        }
+    })
     const handleSelect = (e) => setSelected(e.target.value);
     const handleClick = (e) => {
         const product = {id, image, title, price, option : selected, quantity : 1}
-        addOrUpdateToCart(uid, product);
+        //addOrUpdateToCart(uid, product);
+        addCart.mutate({
+            uid, product},
+            {onSuccess: () => {
+                console.log("cart에 성공적으로 추가되었습니다.")
+            }
+        }
+            )
     } 
     return (
         <>

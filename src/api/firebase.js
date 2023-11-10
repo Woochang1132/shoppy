@@ -70,7 +70,6 @@ export async function getProducts() {
 }
 
 export async function addNewProduct(product, imageUrl) {
-  console.log("product>>", product);
   const id = uuid();
   return set(ref(database, `products/${id}`), {
     ...product,
